@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+@theme {
+  --color-forest: #002f1f;
+  --color-ink: #011c13;
+  --color-emerald: #01402b;
+  --color-orange: #ff6a00;
+  --color-orange-soft: #ff8a3d;
+  /* Orange for text on light backgrounds: passes WCAG AA where #ff6a00 does not. */
+  --color-orange-deep: #c2410c;
+  --color-soft: #f4f4f2;
+  --color-cream: #f7f4ec;
+  --color-line: #e4e2da;
+
+  /* Muted body text, from the usegrade.com stone scale. */
+  --color-muted: #78716c;
+
+  /* Two corner sizes only (usegrade.com uses rounded-2xl / rounded-3xl): cards, and the panels that hold them. */
+  --radius-card: 1.25rem;
+  --radius-panel: 1.5rem;
+
+  --font-display: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  /* No separate mono face: figures and labels use Montserrat too (tabular-nums keeps numbers aligned). */
+  --font-mono: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee-fast: marquee 26s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
+
+  @keyframes shine {
+    0%, 55% { transform: translateX(0); }
+    100% { transform: translateX(450%); }
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  @keyframes pulse-dot {
+    0%, 100% { box-shadow: 0 0 0 0 rgb(255 106 0 / 0.55); }
+    50% { box-shadow: 0 0 0 6px rgb(255 106 0 / 0); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-soft font-sans text-forest antialiased;
+    text-rendering: optimizeLegibility;
+    /* usegrade.com sets every line slightly tight: -0.01em small text, -0.02em body, -0.03em headings. */
+    letter-spacing: -0.01em;
+  }
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: var(--color-orange);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  [id] {
+    scroll-margin-top: 7rem;
+  }
+}
+
+/* Headline type: Montserrat, semibold, -0.03em, calm line height.
+   Page H1s add font-bold on top of this. */
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+/* Solid highlight block behind a key word. Reserved for page H1s and the closing CTA,
+   so each page has one clear focal point at the top and one at the end. */
+@utility mark-block {
+  display: inline-block;
+  background: var(--color-orange);
+  color: var(--color-ink);
+  padding: 0 0.16em;
+  margin: 0 0.02em;
+  border-radius: 0.2em;
+  line-height: 1.18;
+}
+
+/* Quieter accent for section headings: an orange underline that keeps the word in the text colour. */
+@utility mark-line {
+  background-image: linear-gradient(var(--color-orange), var(--color-orange));
+  background-repeat: no-repeat;
+  background-size: 100% 0.12em;
+  background-position: 0 94%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Side padding shared by header, sections and footer. Content is capped at 86rem and
+   centred on wide screens, so every edge lines up from header to footer. */
+@utility gutter {
+  padding-inline: max(clamp(1.25rem, 4vw, 3.5rem), calc((100% - 86rem) / 2));
+}
+
+/* Scrolls normally but never shows a bar (used where a layout is locked to the viewport). */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility grid-lines {
+  background-image:
+    linear-gradient(to right, rgb(244 244 242 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(244 244 242 / 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+@utility grid-lines-orange {
+  background-image:
+    linear-gradient(to right, rgb(255 106 0 / 0.22) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 106 0 / 0.22) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+@utility grid-lines-dark {
+  background-image:
+    linear-gradient(to right, rgb(0 47 31 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(0 47 31 / 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Halftone dot texture (blue2purple-style). */
+@utility halftone {
+  background-image: radial-gradient(rgb(255 106 0 / 0.55) 1.3px, transparent 1.6px);
+  background-size: 11px 11px;
+}
+
+@utility halftone-light {
+  background-image: radial-gradient(rgb(244 244 242 / 0.16) 1.2px, transparent 1.5px);
+  background-size: 10px 10px;
+}
+
+@utility fade-mask {
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 40%, transparent 100%);
+}
+
+@utility corner-mask {
+  mask-image: radial-gradient(ellipse 60% 70% at 0% 0%, black 20%, transparent 75%);
+}
+
+@utility fade-right {
+  mask-image: linear-gradient(to left, black 10%, transparent 85%);
+}
+
+@utility edge-mask {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+@utility glass {
+  background: linear-gradient(180deg, rgb(1 64 43 / 0.7), rgb(0 47 31 / 0.75));
+  border: 1px solid rgb(244 244 242 / 0.1);
+  backdrop-filter: blur(14px);
+}
+
+@utility text-glow {
+  background: linear-gradient(100deg, #ffb37a 0%, var(--color-orange) 55%, #ff8a3d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 28px rgb(255 106 0 / 0.35));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
