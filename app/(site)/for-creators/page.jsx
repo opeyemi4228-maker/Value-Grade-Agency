@@ -60,7 +60,7 @@ export default function ForCreatorsPage() {
         intro="Structured campaigns with written deliverables, fair agreements and payouts on record. You focus on the content."
         ctas={
           <>
-            <Button href="/signup?as=creator" variant="primary" size="lg" arrow>Create a creator account</Button>
+            <Button href="/onboarding?as=creator" variant="primary" size="lg" arrow>Create a creator account</Button>
             <Button href="/contact?intent=creator" variant="ghostDark" size="lg">Join the Creator Network</Button>
           </>
         }

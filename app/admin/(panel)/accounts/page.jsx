@@ -38,7 +38,7 @@ export default async function AccountsPage({ searchParams }) {
     <>
       <PageHeader
         title="Portal accounts"
-        description={`People who signed up at /signup. Link clients to their Grade campaigns and set creators to active so they can see their data.${demoMode() ? " Grade is in demo mode: the campaigns below are sample data." : ""}`}
+        description={`People who signed up at /onboarding. Link clients to their Grade campaigns and set creators to active so they can see their data.${demoMode() ? " Grade is in demo mode: the campaigns below are sample data." : ""}`}
       />
       <nav className="mb-4 flex flex-wrap gap-2" aria-label="Filter accounts">
         {tabs.map(([id, label]) => (

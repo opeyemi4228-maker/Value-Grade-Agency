@@ -85,7 +85,7 @@ function BookCall({ className }) {
 function GetStarted({ className }) {
   return (
     <Link
-      href="/signup"
+      href="/onboarding"
       className={clsx(
         "group h-10 shrink-0 items-center justify-center rounded-xl bg-forest px-4 text-sm font-medium whitespace-nowrap text-soft transition-colors duration-300 hover:bg-emerald",
         className,

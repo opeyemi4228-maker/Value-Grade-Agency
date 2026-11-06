@@ -6,6 +6,7 @@ import { one, query } from "@/lib/db";
 import { burnTime, hashPassword, verifyPassword } from "@/lib/auth/crypto";
 import { createSession, destroyAllSessions, destroySession, getUser, requireUser } from "@/lib/auth/session";
 import { consumeToken, issueToken, sendTokenEmail } from "@/lib/auth/tokens";
+import { demoLoginEnabled, ensureDemoAccount, isDemoEmail, prepareDemoLogin } from "@/lib/auth/demo";
 import { clean, isEmail, rateLimited, sendMail } from "@/lib/forms";
 
 const MIN_PASSWORD = 10;
@@ -77,6 +78,9 @@ export async function logIn(_prev, form) {
   if (rateLimited(`login:${addr}`, 10, 10 * 60_000) || rateLimited(`login:${email}`, 8, 10 * 60_000)) {
     return { error: "Too many attempts. Please wait a few minutes and try again.", email };
   }
+  // Demo accounts have published passwords, so they only work while demo login is enabled.
+  if (isDemoEmail(email) && !demoLoginEnabled()) return { error: "That email and password don't match.", email };
+  await prepareDemoLogin(email); // creates the demo account on first use
   const user = isEmail(email) ? await one("SELECT id, password_hash, status FROM users WHERE email = $1", [email]) : null;
   if (!user) {
     await burnTime(password);
@@ -87,6 +91,15 @@ export async function logIn(_prev, form) {
 
   await createSession(user.id);
   redirect(next);
+}
+
+// One-click demo sign-in from the login page. Refuses unless demo login is enabled.
+export async function demoLogIn(form) {
+  if (!demoLoginEnabled()) redirect("/login");
+  const type = form.get("type") === "creator" ? "creator" : "client";
+  const userId = await ensureDemoAccount(type);
+  await createSession(userId);
+  redirect("/dashboard");
 }
 
 export async function logOut() {

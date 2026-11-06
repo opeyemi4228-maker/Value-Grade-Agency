@@ -40,7 +40,7 @@ export default async function VerificationPage() {
                     <span className={done.has(s.id) ? "grid size-8 shrink-0 place-items-center rounded-full bg-forest text-orange" : "grid size-8 shrink-0 place-items-center rounded-full border border-dashed border-orange text-[#9A3412]"}>
                       {done.has(s.id) ? <Check className="size-4" aria-hidden="true" /> : <Clock3 className="size-4" aria-hidden="true" />}
                     </span>
-                    <span><span className="block text-[14.5px] font-bold text-forest">{s.title}</span><span className="block text-[13px] font-medium text-forest/55">{s.body}</span></span>
+                    <span><span className="block text-[14.5px] font-semibold text-forest">{s.title}</span><span className="block text-[13px] font-medium text-forest/55">{s.body}</span></span>
                   </li>
                 ))}
               </ol>

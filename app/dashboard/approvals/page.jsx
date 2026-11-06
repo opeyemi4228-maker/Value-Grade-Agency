@@ -26,7 +26,7 @@ export default async function ApprovalsPage() {
               {pending.map((a) => (
                 <li key={a.id} className="flex flex-col gap-4 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <p className="text-[15px] font-bold text-forest">{a.creatorName} <span className="font-extrabold tabular-nums">· {money(a.amount, a.currency)}</span></p>
+                    <p className="text-[15px] font-semibold text-forest">{a.creatorName} <span className="font-semibold tabular-nums">· {money(a.amount, a.currency)}</span></p>
                     <p className="text-[12.5px] font-medium text-forest/55">{a.description || "Campaign payout"} · requested {date(a.createdAt)}</p>
                   </div>
                   <ApprovalButtons approvalId={a.id} label={money(a.amount, a.currency)} />
@@ -42,11 +42,11 @@ export default async function ApprovalsPage() {
             <Table head={["Creator", "Requested", "Decided", "Status", "Amount"]} minWidth="38rem">
               {history.map((a) => (
                 <tr key={a.id}>
-                  <td className="px-5 py-3.5 font-bold text-forest">{a.creatorName}</td>
+                  <td className="px-5 py-3.5 font-semibold text-forest">{a.creatorName}</td>
                   <td className="px-5 py-3.5 text-forest/60">{date(a.createdAt)}</td>
                   <td className="px-5 py-3.5 text-forest/60">{date(a.decidedAt)}</td>
                   <td className="px-5 py-3.5"><Badge status={a.status} /></td>
-                  <td className="px-5 py-3.5 text-right font-bold tabular-nums">{money(a.amount, a.currency)}</td>
+                  <td className="px-5 py-3.5 text-right font-semibold tabular-nums">{money(a.amount, a.currency)}</td>
                 </tr>
               ))}
             </Table>

@@ -8,7 +8,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "Create an account",
   description: "Create a free Value Grade Agency account. Brands and agencies track creator campaigns and approve payouts; creators see their campaigns, verification and payouts.",
-  path: "/signup",
+  path: "/onboarding",
 });
 
 export default async function SignupPage({ searchParams }) {

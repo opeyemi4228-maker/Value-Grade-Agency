@@ -66,7 +66,7 @@ All names and figures in the product mock-ups are fictional placeholder data (br
 - The code is in `app/admin/`, `components/admin/`, `lib/admin/`, `proxy.js` (login redirect) and `app/api/admin/export/`. Public pages live in `app/(site)/`; the route group doesn't change any URLs.
 
 ## Client & creator portal (accounts)
-- **Who:** brands/agencies ("clients") and creators sign up at `/signup`, confirm their email, and log in at `/login`. Password reset is at `/forgot-password`. The portal lives at `/dashboard`.
+- **Who:** brands/agencies ("clients") and creators sign up at `/onboarding`, confirm their email, and log in at `/login`. Password reset is at `/forgot-password`. The portal lives at `/dashboard`.
 - **Approval:** new accounts start as *pending* and see a "getting set up" screen. VGA links them in **/admin → Portal accounts**: tick the Grade campaigns a client may see (or paste campaign IDs), or set a creator's Grade email, then set the status to *Active*. Admins get an email for each sign-up.
 - **Clients see:** overview KPIs, their linked campaigns with per-creator posts, views, likes and pending pay, the **payout approval queue** (approve or reject, with a confirm step; approving releases the money through Grade), and invoice PDFs for approved payouts.
 - **Creators see:** total paid, payouts, receipt PDFs, and identity verification (KYC) status with a button that sends Grade's secure verification invite.

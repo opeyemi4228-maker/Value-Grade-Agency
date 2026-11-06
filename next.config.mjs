@@ -3,6 +3,10 @@ const nextConfig = {
   poweredByHeader: false,
   // Database drivers load native/wasm files at runtime, so keep them out of the bundle.
   serverExternalPackages: ["pg", "@electric-sql/pglite"],
+  // Account creation moved from /signup to /onboarding. Query strings (e.g. ?as=creator) carry over.
+  async redirects() {
+    return [{ source: "/signup", destination: "/onboarding", permanent: true }];
+  },
   async headers() {
     return [
       {

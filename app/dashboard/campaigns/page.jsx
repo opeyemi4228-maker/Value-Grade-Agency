@@ -25,7 +25,7 @@ export default async function CampaignsPage() {
               {campaigns.map(({ campaign: c, analytics: a }) => (
                 <tr key={c.campaignId} className="hover:bg-forest/[0.02]">
                   <td className="px-5 py-4">
-                    <Link href={`/dashboard/campaigns/${encodeURIComponent(c.campaignId)}`} className="font-bold text-forest hover:text-[#9A3412]">{c.campaignName}</Link>
+                    <Link href={`/dashboard/campaigns/${encodeURIComponent(c.campaignId)}`} className="font-semibold text-forest hover:text-[#9A3412]">{c.campaignName}</Link>
                     {c.campaignDescription && <span className="mt-0.5 block max-w-xs truncate text-[12px] text-forest/45">{c.campaignDescription}</span>}
                   </td>
                   <td className="px-5 py-4"><Badge status={c.campaignStatus} /></td>

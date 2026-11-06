@@ -26,11 +26,11 @@ export default async function PayoutsPage() {
             <Table head={["Campaign", "Reference", "Date", "Status", "Amount"]} minWidth="38rem">
               {payouts.map((p) => (
                 <tr key={p.payoutId}>
-                  <td className="px-5 py-3.5 font-bold text-forest">{p.campaignName || "Direct payout"}</td>
+                  <td className="px-5 py-3.5 font-semibold text-forest">{p.campaignName || "Direct payout"}</td>
                   <td className="px-5 py-3.5 font-mono text-[12px] text-forest/50">{p.payoutId}</td>
                   <td className="px-5 py-3.5 text-forest/60">{date(p.createdAt || p.payoutDate)}</td>
                   <td className="px-5 py-3.5"><Badge status={p.status} /></td>
-                  <td className="px-5 py-3.5 text-right font-bold tabular-nums">{p.amount != null ? money(p.amount, p.currency) : "—"}</td>
+                  <td className="px-5 py-3.5 text-right font-semibold tabular-nums">{p.amount != null ? money(p.amount, p.currency) : "—"}</td>
                 </tr>
               ))}
             </Table>

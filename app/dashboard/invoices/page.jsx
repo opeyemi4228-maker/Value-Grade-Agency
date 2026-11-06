@@ -8,7 +8,7 @@ export const metadata = { title: "Invoices" };
 
 function DownloadLink({ id }) {
   return (
-    <a href={`/api/portal/invoice/${encodeURIComponent(id)}`} className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[12.5px] font-bold text-forest ring-1 ring-forest/15 hover:bg-forest hover:text-soft">
+    <a href={`/api/portal/invoice/${encodeURIComponent(id)}`} className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[12.5px] font-semibold text-forest ring-1 ring-forest/15 hover:bg-forest hover:text-soft">
       <Download className="size-3.5" aria-hidden="true" /> PDF
     </a>
   );
@@ -43,10 +43,10 @@ export default async function InvoicesPage() {
             <Table head={[client ? "Creator" : "Campaign", "Date", "Status", "Amount", ""]} minWidth="36rem">
               {rows.map((r) => (
                 <tr key={r.id}>
-                  <td className="px-5 py-3.5"><span className="block font-bold text-forest">{r.title}</span><span className="block text-[12px] text-forest/45">{r.sub}</span></td>
+                  <td className="px-5 py-3.5"><span className="block font-semibold text-forest">{r.title}</span><span className="block text-[12px] text-forest/45">{r.sub}</span></td>
                   <td className="px-5 py-3.5 text-forest/60">{date(r.when)}</td>
                   <td className="px-5 py-3.5"><Badge status={r.status} /></td>
-                  <td className="px-5 py-3.5 font-bold tabular-nums">{r.amount}</td>
+                  <td className="px-5 py-3.5 font-semibold tabular-nums">{r.amount}</td>
                   <td className="px-5 py-3.5 text-right"><DownloadLink id={r.id} /></td>
                 </tr>
               ))}

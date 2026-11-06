@@ -11,7 +11,7 @@ const routes = [
   ["/compliance", 0.8, "monthly"],
   ["/about", 0.7, "monthly"],
   ["/contact", 0.7, "yearly"],
-  ["/signup", 0.5, "yearly"],
+  ["/onboarding", 0.5, "yearly"],
   ["/login", 0.3, "yearly"],
   ["/privacy", 0.2, "yearly"],
 ];
